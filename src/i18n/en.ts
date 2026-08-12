@@ -408,6 +408,10 @@ export const en: Record<MessageKey, string> = {
   // ————— site · not found —————
   'site.notfound.metaTitle': 'page not found — habit.',
   'site.notfound.metaDescription': 'This address matches no page.',
+  // ————— update —————
+  'update.available': 'A new version is ready.',
+  'update.action': 'reload',
+
   'site.notfound.title': 'This page does not exist.',
   'site.notfound.body':
     'The address may be incomplete, or the page has been taken down.',

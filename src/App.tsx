@@ -3,6 +3,7 @@
 import type { ReactNode } from 'react'
 import { BrowserRouter, Route, Routes, useSearchParams } from 'react-router'
 import { HabitApp } from './app/HabitApp.tsx'
+import { UpdatePrompt } from './app/UpdatePrompt.tsx'
 import { I18nProvider, useI18n } from './i18n/index.tsx'
 import { DemoStoreProvider, StoreProvider, useStore } from './state/store.tsx'
 import { AboutPage } from './site/AboutPage.tsx'
@@ -49,6 +50,9 @@ export function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        {/* Hors du routeur : la proposition survit aux navigations, et elle
+            vaut pour le site comme pour l'application. */}
+        <UpdatePrompt />
       </Localised>
     </StoreProvider>
   )

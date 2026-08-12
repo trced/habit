@@ -417,6 +417,12 @@ export const fr = {
   // ————— site · page absente —————
   'site.notfound.metaTitle': 'page introuvable — habit.',
   'site.notfound.metaDescription': "Cette adresse ne correspond à aucune page.",
+  // ————— mise à jour —————
+  // La version en attente ne s'installe pas d'elle-même : le bandeau annonce,
+  // il ne prévient pas d'un fait accompli.
+  'update.available': 'Une nouvelle version est prête.',
+  'update.action': 'recharger',
+
   'site.notfound.title': 'Cette page n’existe pas.',
   'site.notfound.body':
     "L'adresse est peut-être incomplète, ou la page a été retirée.",
