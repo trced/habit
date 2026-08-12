@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/trced/habit/security/advisories/new
+    about: Report privately. Never in a public issue — see SECURITY.md.
+  - name: Question or idea
+    url: https://github.com/trced/habit/discussions
+    about: Not sure it is a bug, or want to test an idea before writing code? Ask here.
+  - name: What habit. deliberately does not do
+    url: https://github.com/trced/habit#what-it-is-not
+    about: Streaks, scores, badges, reminders and goals have been refused on purpose.

@@ -1,0 +1,103 @@
+name: Bug report
+description: Something in the app behaves differently from what it says it does.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. Please do not paste your `habit.json` or a
+        screenshot of your own grid — habit names say a lot about a person.
+        A trimmed-down file with one or two invented habits is enough to
+        reproduce almost anything.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+      placeholder: |
+        I ticked a cell at 23:30 and it landed on the next day's column.
+        I expected it to land on the day I was looking at.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered, starting from a fresh tracker where possible.
+      placeholder: |
+        1. Open /app?demo=1
+        2. Settings, set the first day of the week to Sunday
+        3. Go back one week
+        4. The month summary still marks the previous band as the current week
+    validations:
+      required: true
+
+  - type: dropdown
+    id: view
+    attributes:
+      label: Where
+      description: Which part of the app. Pick more than one if it applies everywhere.
+      multiple: true
+      options:
+        - The week grid
+        - The month in bands
+        - The month day by day
+        - Add or edit a habit
+        - Manage habits, archive, delete
+        - Settings
+        - Import or export
+        - Presentation site
+        - Everywhere or not sure
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Firefox 141 on Linux, Safari 26 on iOS
+    validations:
+      required: true
+
+  - type: input
+    id: screen
+    attributes:
+      label: Window width
+      description: The layout changes at 640 px and at 1100 px, so this narrows it down fast.
+      placeholder: about 390 px, phone
+    validations:
+      required: false
+
+  - type: input
+    id: settings
+    attributes:
+      label: Relevant settings
+      description: >
+        First day of the week, weekends marked or not, month summary shown or
+        hidden. Several date bugs only show up on one combination.
+      placeholder: first day Sunday, weekends marked
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Settings, at the bottom.
+      placeholder: 0.1.0
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched the existing issues.
+          required: true
+        - label: This is a defect, not a missing feature.
+          required: true
+        - label: I have not included personal habit data.
+          required: true
