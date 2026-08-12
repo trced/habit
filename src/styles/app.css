@@ -1,0 +1,682 @@
+/* app.css — coque de l'application et grille.
+   En-tête ≤ 20 % de la hauteur, la semaine au-dessus de la ligne de
+   flottaison, aucune cible sous 44 px au doigt. */
+
+.app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  isolation: isolate;
+}
+
+/* Route /app : l'application occupe la fenêtre et défile en interne.
+   `flex: none` est nécessaire — dans un conteneur flex en colonne, un
+   `flex-basis` remplacerait `height` et la hauteur redeviendrait
+   indéfinie, ce qui laisserait la grille pousser la page entière. */
+.app--page {
+  flex: none;
+  height: 100dvh;
+  width: 100%;
+}
+
+/* Encart de la page de présentation : le vrai composant, en 390 × 844. */
+.app--embedded {
+  width: 390px;
+  max-width: 100%;
+  height: 844px;
+  border: var(--rule-width) solid var(--color-ink);
+}
+
+.app__head {
+  padding: var(--space-4) var(--screen-margin) var(--space-3);
+  padding-top: calc(var(--space-4) + env(safe-area-inset-top));
+  border-bottom: var(--rule-width) solid var(--color-ink);
+}
+
+.app__topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.app__brand {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-brand);
+  letter-spacing: var(--tracking-brand);
+  min-height: 32px;
+}
+
+/* Les destinations : des libellés texte, jamais une pastille ni un fond.
+   Le trait existe déjà en transparent au repos, sinon le survol décalerait. */
+.app__tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  flex: 0 0 auto;
+}
+
+.app__tab {
+  min-height: var(--touch-target);
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-label);
+  color: var(--color-muted-strong);
+  border-bottom: var(--rule-width) solid transparent;
+  transition: color var(--motion-micro) linear;
+}
+
+.app__tab:hover {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-ink);
+}
+
+.app__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: calc(var(--space-8) + env(safe-area-inset-bottom));
+}
+
+/* Bandeau du mode exemple : dit ce qu'il est, offre la sortie. */
+.app__demo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--screen-margin);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+}
+
+/* — deux colonnes — */
+
+/* Au-delà de 1100 px, la semaine tient à gauche, le mois en bandes à
+   droite, et le mois jour par jour occupe toute la largeur en dessous.
+   Plus rien à ouvrir : les trois lectures sont simultanées. */
+.app__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
+  gap: var(--space-10) var(--space-12);
+  align-items: start;
+  padding: 0 var(--screen-margin);
+}
+
+.app__full {
+  grid-column: 1 / -1;
+}
+
+.app--wide .pane {
+  padding-inline: 0;
+}
+
+/* — un bloc de la page : titre, contenu, légende — */
+
+.pane {
+  padding: var(--space-5) var(--screen-margin) 0;
+}
+
+.pane__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  min-height: var(--touch-target);
+}
+
+.pane__title {
+  font-size: var(--text-body);
+}
+
+.pane__grid {
+  margin-top: var(--space-3);
+}
+
+.pane__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+/* La confirmation passagère prend la place de la mention d'autosave :
+   même ligne, même longueur d'air — rien ne se décale. */
+.pane__note {
+  flex: 1 1 auto;
+  text-align: right;
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+}
+
+.pane__legend {
+  margin-top: var(--space-3);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-muted);
+}
+
+/* Le mois en bandes suit la semaine : un trait franc les sépare. */
+.app:not(.app--wide) .pane + .pane {
+  margin-top: var(--space-6);
+  padding-top: var(--space-3);
+  border-top: var(--rule-width) solid var(--color-ink);
+}
+
+/* — la grille — */
+
+/* Un vrai tableau : les en-têtes de ligne et de colonne existent pour
+   l'assistance, et `table-layout: fixed` garde les sept colonnes égales
+   quel que soit le nombre d'habitudes. `separate` est nécessaire pour que
+   la colonne des noms puisse tenir en position collante. */
+.grid {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.grid__corner,
+.grid__name {
+  width: var(--grid-name-width);
+  text-align: left;
+  font-weight: var(--weight-regular);
+  padding-right: var(--space-2);
+}
+
+.grid__corner {
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+  vertical-align: bottom;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--rule-width) solid var(--color-ink);
+}
+
+.grid__name {
+  font-size: var(--text-data);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: var(--rule-width) solid var(--color-rule);
+}
+
+.grid__day {
+  vertical-align: bottom;
+  padding-bottom: var(--space-2);
+  border-bottom: var(--rule-width) solid var(--color-ink);
+  font-weight: var(--weight-regular);
+}
+
+/* Le week-end s'atténue au lieu de se colorer, et l'initiale du jour reste
+   lue : aucune information ne tient à la seule nuance de gris. */
+.grid__day--dim .grid__num,
+.grid__day--dim .grid__initial {
+  color: var(--color-muted);
+}
+
+.grid__initial,
+.grid__num {
+  display: block;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.grid__initial {
+  font-size: 10px;
+  color: var(--color-muted-strong);
+}
+
+.grid__num {
+  font-size: var(--text-label);
+}
+
+/* Aujourd'hui : un trait de 2 px sous le quantième. Pas de fond, pas de
+   couleur, pas de pastille — la distinction reste subtile. */
+.grid__num--today {
+  width: fit-content;
+  margin: 0 auto;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.grid__cell {
+  padding: 0;
+  border-bottom: var(--rule-width) solid var(--color-rule);
+}
+
+/* La case est le produit : pleine largeur de colonne, 44 px de haut, un
+   seul tap. Aucune bordure ne l'entoure — ce sont les lignes du tableau
+   qui structurent, pas des cadres autour de chaque point. */
+.cell {
+  width: 100%;
+  height: var(--cell-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-data);
+  transition: background var(--motion-micro) linear;
+}
+
+.cell:hover {
+  background: var(--color-selection);
+}
+
+.cell:active {
+  background: var(--color-rule);
+}
+
+.cell:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -3px;
+}
+
+.cell__mark--moss {
+  color: var(--habit-moss);
+}
+
+.cell__mark--slate {
+  color: var(--habit-slate);
+}
+
+.cell__mark--sand {
+  color: var(--habit-sand);
+}
+
+.cell__mark--clay {
+  color: var(--habit-clay);
+}
+
+/* — le mois jour par jour — */
+
+/* Trente et une colonnes ne tiennent pas sur un téléphone : la grille
+   défile latéralement, et la colonne des noms reste en place — le jour
+   qu'on coche garde son habitude sous les yeux. Le défilement vertical de
+   la page, lui, n'est jamais capturé. */
+.grid-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  margin-top: var(--space-3);
+}
+
+.grid--fixed {
+  width: max-content;
+  min-width: 100%;
+}
+
+.grid--fixed .grid__day,
+.grid--fixed .grid__cell {
+  width: var(--grid-column-dense);
+}
+
+.grid--fixed .grid__corner,
+.grid--fixed .grid__name {
+  width: var(--grid-name-width-dense);
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--color-bg);
+}
+
+/* Le filet marque la limite de la colonne collante pendant le défilement :
+   sans lui, les noms flottent au-dessus des points. */
+.grid--fixed .grid__name {
+  box-shadow: 1px 0 0 var(--color-rule);
+}
+
+.grid--fixed .grid__corner {
+  box-shadow: 1px 0 0 var(--color-ink);
+}
+
+.grid--fixed .grid__num {
+  font-size: var(--text-meta);
+}
+
+/* — le mois en bandes — */
+
+.summary {
+  margin-top: var(--space-2);
+}
+
+.summary__head,
+.summary__band {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.summary__head {
+  padding-bottom: var(--space-1);
+  border-bottom: var(--rule-width) solid var(--color-ink);
+}
+
+.summary__label {
+  flex: 0 0 56px;
+  text-align: left;
+  font-size: var(--text-meta);
+  color: var(--color-muted-strong);
+  border-bottom: 2px solid transparent;
+}
+
+/* La semaine affichée se lit en encre pleine, soulignée : c'est le même
+   vocabulaire que « aujourd'hui » dans la grille. */
+.summary__label--current {
+  color: var(--color-ink);
+  border-bottom-color: var(--color-ink);
+}
+
+/* La colonne coupe le nom plutôt que de s'élargir : les bandes du dessous
+   restent alignées sur celles de la grille, quel que soit le nom porté. */
+.summary__abbr {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0 2px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--color-muted-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary__band {
+  border-bottom: var(--rule-width) solid var(--color-rule);
+  transition: background var(--motion-micro) linear;
+}
+
+.summary__band:hover {
+  background: var(--color-selection);
+}
+
+.summary__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  height: var(--band-height);
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: var(--text-meta);
+  line-height: 1;
+}
+
+.summary__cell--moss {
+  color: var(--habit-moss);
+}
+
+.summary__cell--slate {
+  color: var(--habit-slate);
+}
+
+.summary__cell--sand {
+  color: var(--habit-sand);
+}
+
+.summary__cell--clay {
+  color: var(--habit-clay);
+}
+
+/* — pastilles de couleur — */
+
+.swatches {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.swatches__row {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+/* Le libellé porte la cible de 44 px ; l'entrée radio reste sous elle,
+   donc les flèches du clavier parcourent le groupe sans rien simuler. */
+.swatch {
+  width: var(--touch-target);
+  height: var(--touch-target);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: var(--rule-width) solid transparent;
+  transition: border-color var(--motion-micro) linear;
+}
+
+.swatch:hover {
+  border-color: var(--color-rule);
+}
+
+.swatch:has(input:checked) {
+  border-color: var(--color-ink);
+}
+
+.swatch:has(input:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.swatch__dot {
+  width: var(--dot-size-lg);
+  height: var(--dot-size-lg);
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* « Aucune » n'est pas un vide : c'est le point à l'encre, celui que la
+   grille dessine par défaut. Il est creux pour ne pas se confondre avec
+   une couleur choisie. */
+.swatch__dot--none {
+  background: none;
+  border: var(--rule-width) solid var(--color-ink);
+}
+
+.swatch__dot--moss {
+  color: var(--habit-moss);
+}
+
+.swatch__dot--slate {
+  color: var(--habit-slate);
+}
+
+.swatch__dot--sand {
+  color: var(--habit-sand);
+}
+
+.swatch__dot--clay {
+  color: var(--habit-clay);
+}
+
+/* — gérer les habitudes — */
+
+.manage {
+  margin-top: var(--space-3);
+}
+
+.manage__row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: var(--space-3);
+  align-items: center;
+  min-height: var(--touch-target);
+  border-bottom: var(--rule-width) solid var(--color-rule);
+}
+
+.manage__name {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  font-size: var(--text-data);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.manage__name--static {
+  color: var(--color-muted-strong);
+}
+
+button.manage__name:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Réservé même sans couleur : les noms restent alignés d'une ligne à
+   l'autre, qu'une habitude porte une pastille ou non. */
+.manage__dot {
+  flex: 0 0 var(--dot-size-lg);
+  width: var(--dot-size-lg);
+  height: var(--dot-size-lg);
+}
+
+.manage__dot--moss {
+  color: var(--habit-moss);
+}
+
+.manage__dot--slate {
+  color: var(--habit-slate);
+}
+
+.manage__dot--sand {
+  color: var(--habit-sand);
+}
+
+.manage__dot--clay {
+  color: var(--habit-clay);
+}
+
+.manage__move {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.manage__arrow {
+  width: 32px;
+  min-height: var(--touch-target);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted-strong);
+}
+
+.manage__arrow:hover {
+  color: var(--color-ink);
+}
+
+.manage__arrow[disabled] {
+  color: var(--color-rule);
+  cursor: not-allowed;
+}
+
+.manage__row--archived {
+  grid-template-columns: 1fr auto auto;
+}
+
+.manage__add {
+  margin-top: var(--space-4);
+}
+
+/* — panneau de réglages et de gestion — */
+
+.settings__head {
+  padding: var(--space-6) var(--screen-margin) var(--space-3);
+  padding-top: calc(var(--space-6) + env(safe-area-inset-top));
+  border-bottom: var(--rule-width) solid var(--color-ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+
+.settings__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--space-5) var(--screen-margin) var(--space-6);
+  padding-bottom: calc(var(--space-6) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.settings__note {
+  margin-top: var(--space-3);
+  font-size: var(--text-meta);
+  line-height: var(--leading-meta);
+  color: var(--color-muted-strong);
+}
+
+/* Le panneau couvre toute la coque, ses lignes non : à 1600 px un nom et
+   sa valeur ne peuvent pas être séparés par un mètre de vide. */
+@media (min-width: 900px) {
+  .settings__head,
+  .settings__body {
+    width: 100%;
+    max-width: calc(var(--panel-measure) + var(--space-16));
+    margin-inline: auto;
+  }
+}
+
+/* — paliers — */
+
+/* Dès la tablette, la colonne des noms respire et la grille aussi. */
+@media (min-width: 640px) {
+  .grid__corner,
+  .grid__name {
+    width: var(--grid-name-width-lg);
+  }
+
+  .summary__label {
+    flex-basis: 72px;
+    font-size: var(--text-label);
+  }
+
+  .summary__cell {
+    height: var(--band-height-lg);
+    font-size: var(--text-body);
+  }
+}
+
+/* Sur deux colonnes, le mois jour par jour n'a plus à défiler : trente et
+   une colonnes tiennent dans la largeur. Les cases descendent à 36 px —
+   acceptable à la souris, jamais proposé au doigt. */
+@media (min-width: 1100px) {
+  .app--wide .app__full .grid-scroll {
+    overflow-x: visible;
+  }
+
+  .app--wide .app__full .grid--fixed {
+    width: 100%;
+  }
+
+  .app--wide .app__full .grid--fixed .grid__day,
+  .app--wide .app__full .grid--fixed .grid__cell {
+    width: auto;
+  }
+
+  .app--wide .app__full .grid--fixed .grid__corner,
+  .app--wide .app__full .grid--fixed .grid__name {
+    width: 88px;
+    position: static;
+    box-shadow: none;
+  }
+
+  .app--wide .app__full .cell {
+    height: var(--cell-height-dense);
+    font-size: var(--text-label);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell,
+  .summary__band,
+  .app__tab,
+  .swatch {
+    transition: none;
+  }
+}
