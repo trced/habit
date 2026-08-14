@@ -54,7 +54,11 @@
   --ease-out: cubic-bezier(0.2, 0, 0, 1);
 
   /* typographie */
-  --font-family: ui-monospace, 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono',
+  /* La face de la famille est embarquée (fonts.css) : elle vient donc en
+     tête, pour que le rendu soit le même sur toute machine. La pile système
+     reste derrière, pour le temps du chargement et pour les caractères que
+     les deux sous-ensembles latins ne couvrent pas. */
+  --font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', 'IBM Plex Mono',
     Menlo, Consolas, monospace;
   --text-display: 36px;
   --text-title: 24px;
