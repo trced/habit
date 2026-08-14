@@ -192,9 +192,9 @@ state on open — and the stored format stays the file format, readable by eye.
 
 ## Design system
 
-The "famille ." 1.1.0 system, shared with the other `.` micro-apps: monospace,
+The "famille ." 1.2.0 system, shared with the other `.` micro-apps: monospace,
 right angles, two greys and an ink, no illustration, no shadow, no emoji. See
-`docs/Design System v1.1.dc.html`.
+`docs/Design System v1.2.dc.html`.
 
 Every value comes from a token in `src/styles/tokens.css`. A hard-coded colour,
 size, duration or spacing in a component is a conformance defect.

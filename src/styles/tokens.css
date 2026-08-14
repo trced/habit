@@ -1,6 +1,8 @@
 /* tokens.css — source unique de valeurs.
-   Famille « . » (trced) 1.1.0 — voir docs/Design System v1.1.dc.html.
-   Une valeur en dur dans un composant est un défaut de conformité. */
+   Famille « . » (trced) 1.2.0 — voir docs/Design System v1.2.dc.html.
+   Une valeur en dur dans un composant est un défaut de conformité.
+   Toute modification de la famille — un token, un composant, une feuille —
+   change cette version. Le journal est dans le document de référence. */
 
 :root {
   /* 1 · primitifs — jamais utilisés directement dans un composant */
@@ -44,6 +46,9 @@
      restent nommés pour que les composants continuent de les déclarer. */
   --radius-sm: 0;
   --radius-md: 0;
+  /* Sauf ce qui n'est pas une surface : un point est un disque, et le reste
+     du temps ce token ne sert pas. */
+  --radius-full: 50%;
 
   --touch-target: 44px;
   --rule-width: 1px;
