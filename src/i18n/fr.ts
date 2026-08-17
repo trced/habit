@@ -12,7 +12,7 @@ export const fr = {
 
   // ————— application · navigation —————
   'app.nav.home': "revenir à la semaine en cours",
-  'app.nav.settings': 'paramètres',
+  'app.nav.settings': 'réglages',
   'app.nav.habits': 'habitudes',
   'app.nav.views': 'Vues',
   'app.nav.add': '+ ajouter',
@@ -76,10 +76,10 @@ export const fr = {
   'app.empty.title': 'Aucune habitude.',
   'app.empty.body': 'Une ligne vide, un bouton. Aucune suggestion imposée.',
   'app.empty.action': 'nommer la première habitude',
-  'app.empty.note': 'Vous avez déjà un fichier habit.json ? Paramètres → importer.',
+  'app.empty.note': 'Vous avez déjà un fichier habit.json ? Réglages → importer.',
   'app.empty.rowName': '—',
   'app.empty.allArchived':
-    'Toutes vos habitudes sont archivées. Paramètres → habitudes pour en restaurer une.',
+    'Toutes vos habitudes sont archivées. Réglages → habitudes pour en restaurer une.',
 
   // ————— application · feuille habitude —————
   'app.habit.addTitle': 'ajouter une habitude',
@@ -126,8 +126,8 @@ export const fr = {
     'Son historique — {n} jours cochés — sera effacé. Archiver le conserve.',
   'app.manage.deleteConfirm': 'supprimer définitivement',
 
-  // ————— application · paramètres —————
-  'app.settings.title': 'paramètres',
+  // ————— application · réglages —————
+  'app.settings.title': 'réglages',
   'app.settings.display': 'affichage',
   'app.settings.data': 'données — locales, jamais envoyées',
   'app.settings.about': 'à propos',
@@ -282,11 +282,11 @@ export const fr = {
     "L'application réelle, avec un exemple de six habitudes.",
   'site.home.app': "l'application",
   'site.home.appBody':
-    "Ce n'est pas une capture d'écran : c'est l'application, avec un exemple de six habitudes. Cochez, changez de semaine, ouvrez les paramètres — rien de ce que vous ferez ici n'est enregistré.",
+    "Ce n'est pas une capture d'écran : c'est l'application, avec un exemple de six habitudes. Cochez, changez de semaine, ouvrez les réglages — rien de ce que vous ferez ici n'est enregistré.",
   'site.home.appHint.week': 'toucher une case la coche ou la décoche',
   'site.home.appHint.summary': 'toucher une bande affiche cette semaine',
   'site.home.appHint.month': '« voir le mois entier » ouvre le jour par jour',
-  'site.home.appHint.settings': 'les paramètres changent le thème et la langue',
+  'site.home.appHint.settings': 'les réglages changent le thème et la langue',
   'site.home.ready': 'Prêt à commencer ?',
   'site.home.readyNote': 'Une habitude suffit. Vous en ajouterez d’autres plus tard.',
   'site.home.start': "ouvrir l'application",
@@ -398,7 +398,7 @@ export const fr = {
     "Les fichiers de l'application sont servis par un hébergeur statique, qui peut conserver des journaux techniques de connexion pour la sécurité de son service. Ces journaux ne sont ni exploités ni consultés par le projet.",
   'site.legal.privacy.rightsTitle': 'Vos droits',
   'site.legal.privacy.rightsBody':
-    "Puisqu'aucune donnée personnelle n'est collectée par le projet, il n'y a rien à demander ni à faire supprimer. Vous gardez à tout moment la maîtrise de vos données : Paramètres → exporter, ou tout effacer.",
+    "Puisqu'aucune donnée personnelle n'est collectée par le projet, il n'y a rien à demander ni à faire supprimer. Vous gardez à tout moment la maîtrise de vos données : Réglages → exporter, ou tout effacer.",
 
   'site.legal.notice.metaTitle': 'mentions légales — habit.',
   'site.legal.notice.metaDescription':

@@ -217,7 +217,7 @@ describe('HabitApp', () => {
     seed(HABITS, [{ habitId: 'walk', date: '2026-08-12' }])
     renderApp()
 
-    await user.click(screen.getByRole('button', { name: 'paramètres' }))
+    await user.click(screen.getByRole('button', { name: 'réglages' }))
     await user.click(screen.getByRole('button', { name: /^habitudes/ }))
     await user.click(screen.getByRole('button', { name: 'archiver marche' }))
 
@@ -238,7 +238,7 @@ describe('HabitApp', () => {
     )
     renderApp()
 
-    await user.click(screen.getByRole('button', { name: 'paramètres' }))
+    await user.click(screen.getByRole('button', { name: 'réglages' }))
     await user.click(screen.getByRole('button', { name: /^habitudes/ }))
     await user.click(screen.getByRole('button', { name: 'supprimer marche' }))
 
@@ -258,7 +258,7 @@ describe('HabitApp', () => {
     seed(HABITS)
     renderApp()
 
-    await user.click(screen.getByRole('button', { name: 'paramètres' }))
+    await user.click(screen.getByRole('button', { name: 'réglages' }))
 
     expect(
       screen.getByRole('link', { name: /code source/ }).getAttribute('href'),
@@ -275,7 +275,7 @@ describe('HabitApp', () => {
     seed(HABITS)
     renderApp()
 
-    await user.click(screen.getByRole('button', { name: 'paramètres' }))
+    await user.click(screen.getByRole('button', { name: 'réglages' }))
     await user.click(
       screen.getByRole('button', { name: 'résumé mensuel : affiché, changer' }),
     )
