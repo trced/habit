@@ -1,6 +1,6 @@
 {
   "name": "habit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "One week. One grid. A local-first, offline habit tracker with no account.",
   "keywords": [

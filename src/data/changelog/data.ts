@@ -4,6 +4,67 @@ import type { ChangelogVersion } from './types.ts'
  *  historique déjà publié — voir le skill /release. */
 export const changelogVersions: ChangelogVersion[] = [
   {
+    version: '0.1.1',
+    date: '2026-08-17',
+    changes: {
+      added: [
+        {
+          text: "Une nouvelle version se propose au lieu de s'imposer. Une fois téléchargée, un bandeau le dit et attend : la page se recharge au clic, jamais en pleine saisie",
+          textEn:
+            'A new version offers itself instead of imposing itself. Once it is downloaded, a banner says so and waits: the page reloads on click, never in the middle of typing',
+          category: 'Plateforme',
+          categoryEn: 'Platform',
+        },
+      ],
+      changed: [
+        {
+          text: "JetBrains Mono est désormais livrée avec l'application : deux graisses, deux sous-ensembles latins. La face ne dépend plus de ce que la machine a sous la main, et la pile système reste derrière elle, pour le temps du chargement et pour ce que ces sous-ensembles ne couvrent pas",
+          textEn:
+            'JetBrains Mono now ships with the app: two weights, two Latin subsets. The typeface no longer depends on what the machine happens to have installed, and the system stack stays behind it, for the loading window and for what those subsets do not cover',
+          category: 'Design',
+          categoryEn: 'Design',
+        },
+        {
+          text: "Le corps de texte suit l'échelle de trced. : fluide de 14 px à 15 px au lieu de 15 px fixes, ce qui donne la même densité de lecture dans toute la famille. Les autres crans (data, label, meta) ne bougent pas",
+          textEn:
+            'Body text follows the trced. scale: fluid from 14 px to 15 px rather than a fixed 15 px, which gives the whole family the same reading density. The other steps (data, label, meta) do not move',
+          category: 'Design',
+          categoryEn: 'Design',
+        },
+        {
+          text: "La référence de la famille « . » paraît en 1.2.0 et décrit ce qui est réellement livré : angles droits, échelles fluides, tokens de mise en page, variantes des composants, et ce qui n'est pas implémenté déclaré comme tel",
+          textEn:
+            'The "famille ." reference is published as 1.2.0 and describes what is actually shipped: right angles, fluid scales, layout tokens, the component variants, and whatever is not implemented declared as such',
+          category: 'Design',
+          categoryEn: 'Design',
+        },
+      ],
+      fixed: [
+        {
+          text: "Une application installée ne recevait aucune mise à jour. Rien ne redemandait le service worker une fois la page ouverte, et l'hébergeur servait sw.js depuis son propre cache : la version publiée n'arrivait tout simplement pas. Le worker attend maintenant qu'on lui donne la main, le retour sur l'application et une relance horaire le redemandent, et l'hébergeur fait revalider sw.js, index.html et le manifeste",
+          textEn:
+            'An installed app never received a single update. Nothing asked the service worker again once the page was open, and the host served sw.js from its own cache: the published version simply did not arrive. The worker now waits to be handed over, returning to the app and an hourly check ask for it again, and the host revalidates sw.js, index.html and the manifest',
+          category: 'Plateforme',
+          categoryEn: 'Platform',
+        },
+        {
+          text: 'Un champ multiligne annonce son erreur comme un champ simple : aria-invalid, le message en role="alert", et le champ qui pointe son erreur quand elle existe, son indication sinon',
+          textEn:
+            'A multi-line field announces its error the way a single-line one does: aria-invalid, the message in role="alert", and the field pointing at its error when there is one and at its hint otherwise',
+          category: 'Accessibilité',
+          categoryEn: 'Accessibility',
+        },
+        {
+          text: "Le creux entre deux lignes d'habitudes reste aligné sur la ligne qu'il sépare. Sa colonne de clé lisait une largeur recopiée, qui se désalignait dès qu'une liste redéfinissait la sienne",
+          textEn:
+            'The gap between two habit rows stays aligned with the row it separates. Its key column read a copied width, which drifted as soon as a list redefined its own',
+          category: 'Design',
+          categoryEn: 'Design',
+        },
+      ],
+    },
+  },
+  {
     version: '0.1.0',
     date: '2026-08-12',
     changes: {
